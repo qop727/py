@@ -7,3 +7,6 @@ for prvek in muj_seznam:
 # iterace s indexem
 for i, prvek in enumerate(muj_seznam):
     print(f"Index {i}: {prvek}")
+
+gggfghfghdfgh
+zkouska
