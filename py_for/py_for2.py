@@ -21,7 +21,7 @@ for item in inventory:
     # Conditions for restocking.
 	if inventory[item][0] <= inventory[item][1]:
 		print(f"{item} needs restocking. Current stock: {inventory[item][0]}. Minimum required: {inventory[item][1]}")
-		inventory[item][0] = inventory[item][0] + 20
+		inventory[item][0] += 20
 		print(f"Updated stock for {item}: {inventory[item][0]}")
 	if item in promotions:
 		print(f"Promotion for {item}: {promotions[item]}")
