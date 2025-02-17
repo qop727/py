@@ -1,4 +1,4 @@
-# Seznam.
+# Lists.
 list = [5, 7, 99, 344, "jojo", 4.55]
 
 # Vypis hodnot z listu.
