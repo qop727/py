@@ -1,4 +1,4 @@
-# Program to make an average rating.
+# Program to make an average rating. v1.2
 
 # Printing what does the program do.
 print("""Program vypočítá průměrnou hodnotu zadaných hodnocení.

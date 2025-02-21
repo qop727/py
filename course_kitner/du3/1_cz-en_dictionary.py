@@ -1,9 +1,8 @@
 # Czech - english dictionary.
 
-print("""Program přeloží zadané české slovo do angličtiny.
-    """)                                                            # Printing what does the program do.
+print("Program přeloží zadané české slovo do angličtiny.\n")            # Printing what does the program do.
 
-dictionary = {                                                      # Creating database of translations.
+dictionary = {                                                          # Creating database of translations.
     "ahoj": "hi",
     "nashledanou": "goodbye",
     "děkuji": "thank you",
@@ -16,13 +15,12 @@ dictionary = {                                                      # Creating d
     "špatný": "bad",
 }
 
-print("Vybrat si můžete z následující databáze:")                   # Printing options to translate.
+print("Vybrat si můžete z následující databáze:")                       # Printing options to translate.
 for word in dictionary:
     print(word)
-print("")
 
 while True:                                                                             # Making the program to ask again if error occurs.
-    word = input("Zadejte, prosím, české slovo z databáze, které chcete přeložit: ")    # Input a word to translate.
+    word = input("\nZadejte, prosím, české slovo z databáze, které chcete přeložit: ")  # Input a word to translate.
     if word in dictionary:                                                              # Input validation and translation.
         print(f"České slovo {word} se anglicky řekne {dictionary[word]}.")
         break    

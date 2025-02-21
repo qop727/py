@@ -1,4 +1,4 @@
-# Program to calculate if you are teenager of not.
+# Program to calculate if you are teenager of not. v1.0
 
 # Age input.
 age = int(input("Zadejte, prosím, kolik Vám je let: "))

@@ -1,4 +1,4 @@
-# Program to calculate BMI.
+# Program to calculate BMI. v1.0
 
 # Printing what does the program do.
 print("Program provede výpočet Vašeho BMI.")

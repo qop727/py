@@ -44,7 +44,7 @@ def information(**info):
     for key, value in info.items():
         print(f"{key}: {value}")
 
-information(name="Petr", age=30, city="Praha", saa="ahoj")
+information(name="Petr", age=30, city="Praha", weight="75", hight="1.8")
 information(name="Jan", age=38, city="Brno")
 information(name="Ondrej", age=34, city="Pardubice")
 print("--------------------------------------")

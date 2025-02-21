@@ -1,4 +1,4 @@
-# Program to calculate BMI and decide your condition v1.1.
+# Program to calculate BMI and decide your condition. v1.1
 
 print("""Program provede výpočet Vašeho BMI a zařazení do skupiny.
     """)                                                                        # Printing what does the program do.

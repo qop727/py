@@ -1,17 +1,17 @@
 # Program to decide weather you have right to enter or not.
 
 print("""Program posoudí, zda máte právo vejít, či nikoli.
-    """)                                                                    # Printing what does the program do.
+    """)                                                                # Printing what does the program do.
 
-credentials = {                                                             # Creating database of credentials.
+credentials = {                                                         # Creating database of credentials.
     "username": "user001",
     "password": "Python123"
 }
 j = 2
 
 for i in range(3):
-    username_inp = input("Zadejte, prosím, přihlašovací jméno: ")               # Username input.
-    password_inp = input("Zadejte, prosím, přihlašovací heslo: ")               # Password input.
+    username_inp = input("Zadejte, prosím, přihlašovací jméno: ")       # Username input.
+    password_inp = input("Zadejte, prosím, přihlašovací heslo: ")       # Password input.
     
     if username_inp in credentials["username"] and password_inp in credentials["password"]:     # Calculating if the credentials are correct.
         print("Vstup povolen.")
