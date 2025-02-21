@@ -1,5 +1,5 @@
 # Dictionary
-numbers = {773774889:"cislo na milana"}   # Hledani podle cisla.
+numbers = {773774889:"cislo na milana"}   # Cisla ukladat takto, pokud chceme hledat podle cisla.
 
 dict = {"jablka": 10, "banany": 20}
 
