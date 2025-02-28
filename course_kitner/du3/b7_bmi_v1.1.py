@@ -1,7 +1,6 @@
 # Program to calculate BMI and decide your condition. v1.1
 
-print("""Program provede výpočet Vašeho BMI a zařazení do skupiny.
-    """)                                                                        # Printing what does the program do.
+print("Program provede výpočet Vašeho BMI a zařazení do skupiny.\n")            # Printing what does the program do.
 
 while True:                                                                     # Making the program to ask again if error occurs.
     try:
