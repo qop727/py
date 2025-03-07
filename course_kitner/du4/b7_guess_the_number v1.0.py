@@ -1,4 +1,4 @@
-# Program guess the number.
+# Program guess the number. v1.0
 import random
 
 number = random.randint(1, 100)
