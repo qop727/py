@@ -13,9 +13,9 @@ def encrypt(text, shift):                                               # Encryp
     for char in text:
         if char.isalpha():
             if char.isupper():
-                result += chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
+                result += chr((ord(char) - ord("A") + shift) % 26 + ord("A"))
             else:
-                result += chr((ord(char) - ord('a') + shift) % 26 + ord('a'))
+                result += chr((ord(char) - ord("a") + shift) % 26 + ord("a"))
         else:
             result += char
     return result
@@ -25,9 +25,9 @@ def decrypt(text, shift):                                               # Decryp
     for char in text:
         if char.isalpha():
             if char.isupper():
-                result += chr((ord(char) - ord('A') - shift) % 26 + ord('A'))
+                result += chr((ord(char) - ord("A") - shift) % 26 + ord("A"))
             else:
-                result += chr((ord(char) - ord('a') - shift) % 26 + ord('a'))
+                result += chr((ord(char) - ord("a") - shift) % 26 + ord("a"))
         else:
             result += char
     return result
@@ -45,11 +45,16 @@ while True:                                                             # Making
         if 0 < shift <= 25:                                             # Calculating the conditions.
             break
         else:
-            print("Chyba: Zadejte, prosím, číslo od 1 do 25.")          # Warn if the input is wrong.
+            print("Chyba: Zadejte, prosím, posun šifry od 1 do 25.")    # Warn if the input is wrong.
     except ValueError:
         print("Chyba: Zadejte, prosím, celé číslo.")                    # Warn if the input is wrong.
 
-text = input("Zadejte, prosím, text, který chcete zpracovat: ")         # Input text to process.
+while True:
+    text = input("Zadejte, prosím, text, který chcete zpracovat: ")     # Input text to process.
+    if len(text) > 0 and not(any(char.isdigit() for char in text)):
+        break
+    else:
+        print("Chyba: Text nesmí obsahovat číslice.")
 
 if mode == "s":                                                         # Text processing.
     output_text = encrypt(text, shift)

@@ -1,4 +1,4 @@
-# Program to calculate basic mathematical operations of your choosing.
+# Program to calculate basic mathematical operations of your choosing using def functions only.
 
 import math
 import sys

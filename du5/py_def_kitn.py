@@ -53,13 +53,13 @@ print("--------------------------------------")
 print("Multiplication.")
 def multiply1(a, b):
     result = a * b
-    return (result)
+    return(result)
 
 x = multiply1(2, 5)
 print(x)
 
 # Same function siplyfied.
 def multiply2(a, b):
-    return (a * b)
+    return(a * b)
 
 print(multiply2(2, 5))
