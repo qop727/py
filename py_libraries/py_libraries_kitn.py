@@ -1,3 +1,0 @@
-# Program to train libraries.
-
-
