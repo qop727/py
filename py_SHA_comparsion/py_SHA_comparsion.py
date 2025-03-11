@@ -1,37 +1,34 @@
+# Program to compare SHA hash code of a file and input.
+
 import hashlib
 
-
 def calculate_sha256(file_path):
-    #Calculate the SHA-256 checksum of a file.
-    sha256_hash = hashlib.sha256()
+    sha256_hash = hashlib.sha256()                  # Calculate the SHA-256 checksum of a file.
     try:
         with open(file_path, "rb") as file:
             for byte_block in iter(lambda: file.read(4096), b""):
                 sha256_hash.update(byte_block)
         return sha256_hash.hexdigest()
     except FileNotFoundError:
-        print(f"\nError: File not found - {file_path}")
+        print(f"\nChyba: Soubor nenalezen - {file_path}")
         return None
 
-
 def compare_checksum(file_path, provided_checksum):
-    #Compare the SHA-256 checksum of a file with a provided checksum.
-    file_checksum = calculate_sha256(file_path)
+    file_checksum = calculate_sha256(file_path)     # Compare the SHA-256 checksum of a file with a provided checksum.
     if file_checksum is None:
         return False
     return file_checksum == provided_checksum
 
-
 # Input file path and the SHA-256 hash to compare
-file_path = input("Enter the path of the file: ")
-provided_checksum = input("Enter the SHA-256 hash to compare: ")
-print("\nCalculating, please wait...")
+file_path = input("Zadejte, prosím, kompletní cestu k souboru: ")
+provided_checksum = input("Zadejte, prosím, SHA-256 hash kód k porovnání: ")
+print("\nPorovnávám, prosím čekejte...")
 
 # Compare checksums
 if compare_checksum(file_path, provided_checksum):
-    print("\nThe file's SHA-256 checksum MATCHES the provided hash!")
+    print("\nSHA-256 checksum souboru JE stejný, jako zadaný hash kód!")
 else:
-    print("\nThe file's SHA-256 checksum DOES NOT MATCH the provided hash.")
+    print("\nSHA-256 checksum souboru NENÍ stejný, jako zadaný hash kód!")
 
 # Wait for the user to press Enter before exiting
-input("\nPress Enter to exit...")
+input("\nPro ukončení programu stiskněte Enter...")
