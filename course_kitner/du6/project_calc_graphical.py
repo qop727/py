@@ -1,7 +1,7 @@
 # Program to calculate basic mathematical operations of your choosing using def functions only.
 
 import math
-import sys
+from tkinter import *
 list_of_operations = ["+", "-", "x", "/", "umocni", "odmocni", "UKONCI"]
 
 def print_the_list():                                   # Creating function for printing the list of available operations.
@@ -21,9 +21,8 @@ def graphical_headline(headline):                       # Creating function for 
 def math_operation_choosing():                          # Creating function for choosing the math operation.
     while True:
         operation = input("Zadejte, prosím, jakou matematickou operaci chcete použít: ")
-        if operation == list_of_operations[6]:          # Exit the program.
-            sys.exit()
-        elif operation == list_of_operations[0]:        # Operation 0.
+        
+        if operation == list_of_operations[0]:        # Operation 0.
             a, b = two_number_input()
             print(f"{a} + {b} = {add(a, b)}")
             break
@@ -97,3 +96,22 @@ print("Zadáním jedné z možností aktivujete matematickou operaci, nebo progr
 print_the_list()
 math_operation_choosing()
 print("")
+
+# Setting the window and button appearance.
+win = Tk()
+win.title("Rock, Paper, Scissors")
+win.geometry("700x600")
+
+headline = Label(win, text = "Ahoj kámo!\nChceš si zahrát Kámen, Nůžky, Papír?\n", font = ("Arial Bold", 14))
+headline.grid(column = 0, row = 0)
+
+button1 = Button(win, text = "Hrát!", font = ("Arial Bold", 16), bg = "green", fg = "blue", command = f_button1)
+button1.grid(column = 0, row = 1)
+
+label1 = Label(win, font = ("Arial Bold", 14))
+label1.grid(column = 0, row = 2)
+
+label2 = Label(win, font = ("Arial Bold", 14))
+label2.grid(column = 0, row = 3)
+
+win.mainloop()
