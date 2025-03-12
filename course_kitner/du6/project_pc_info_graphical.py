@@ -1,22 +1,44 @@
 # Program to show PC basic info.
 
-from tkinter import *
+import tkinter as tk
+import platform
+import psutil
 
-# Setting the window and button appearance.
-win = Tk()
-win.title("Rock, Paper, Scissors")
-win.geometry("700x600")
+# Function to get PC info.
+def get_system_info():
+    os_info = f"OS:     {platform.system()} {platform.release()}"   # Getting OS info.
+    
+    cpu_name = platform.processor() or platform.uname().machine     # Getting CPU info.
+    freq = psutil.cpu_freq()
+    if freq:
+        cpu_freq = f"{freq.current:.2f} MHz"
+    else:
+        cpu_freq = "    N/A"
+    cores = psutil.cpu_count(logical=False)
+    logical_cores = psutil.cpu_count(logical=True)
+    cpu_info = f"CPU:     {cpu_name}\nFrequency:     {cpu_freq}\nCores:     {cores} physical, {logical_cores} logical"
+    
+    ram_total = psutil.virtual_memory().total / (1024**3)           # Getting RAM info.
+    ram_info = f"RAM:     {ram_total:.2f} GB"
+    
+    return f"{os_info}\n{cpu_info}\n{ram_info}"                     # Concatenating info into one string.
 
-headline = Label(win, text = "Ahoj kámo!\nChceš si zahrát Kámen, Nůžky, Papír?\n", font = ("Arial Bold", 14))
-headline.grid(column = 0, row = 0)
+# Function of the button to get system info and put it into the label.
+def button_show_info():
+    info = get_system_info()
+    info_label.config(text=info)
 
-button1 = Button(win, text = "Hrát!", font = ("Arial Bold", 16), bg = "green", fg = "blue", command = f_button1)
-button1.grid(column = 0, row = 1)
+# Setting up the window.
+win = tk.Tk()
+win.title("System Info")
+win.geometry("650x350")
 
-label1 = Label(win, font = ("Arial Bold", 14))
-label1.grid(column = 0, row = 2)
+# Button creation.
+button = tk.Button(win, text="Show System Info", command=button_show_info, font=("Helvetica", 14))
+button.pack(pady=20)
 
-label2 = Label(win, font = ("Arial Bold", 14))
-label2.grid(column = 0, row = 3)
+# Label creation.
+info_label = tk.Label(win, text="", font=("Helvetica", 12), justify="left")
+info_label.pack(pady=20)
 
-win.mainloop()
+win.mainloop()                                                      # Starting the main loop.

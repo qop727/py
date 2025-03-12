@@ -3,7 +3,7 @@
 import turtle
 import time
 
-game_speed = 0.01
+game_speed = 0.008
 score_a = 0
 score_b = 0
 
@@ -83,22 +83,22 @@ score_pen_b.write("Player B: 0 ", align="center", font=("Courier", 24, "normal")
 # Functions for paddle movement.
 def paddle_a_up():
     y = paddle_a.ycor()
-    y += 20
+    y += 30
     paddle_a.sety(y)
 
 def paddle_a_down():
     y = paddle_a.ycor()
-    y -= 20
+    y -= 30
     paddle_a.sety(y)
 
 def paddle_b_up():
     y = paddle_b.ycor()
-    y += 20
+    y += 30
     paddle_b.sety(y)
 
 def paddle_b_down():
     y = paddle_b.ycor()
-    y -= 20
+    y -= 30
     paddle_b.sety(y)
 
 # Keyboard bindings.
