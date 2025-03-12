@@ -1,4 +1,4 @@
-# Snake game.
+# Graphical snake game.
 
 import turtle
 import time

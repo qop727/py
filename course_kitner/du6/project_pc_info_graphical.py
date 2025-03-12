@@ -1,4 +1,4 @@
-# Program to show PC basic info.
+# Graphical program to show PC basic info.
 
 import tkinter as tk
 import platform

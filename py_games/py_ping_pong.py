@@ -1,4 +1,4 @@
-# Ping Pong game.
+# Graphical Ping Pong game.
 
 import turtle
 import time
