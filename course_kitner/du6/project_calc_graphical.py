@@ -1,117 +1,54 @@
-# Program to calculate basic mathematical operations of your choosing using def functions only.
+# Graphical calculator.
 
-import math
-from tkinter import *
-list_of_operations = ["+", "-", "x", "/", "umocni", "odmocni", "UKONCI"]
+import tkinter as tk
 
-def print_the_list():                                   # Creating function for printing the list of available operations.
-    print(end="| ")
-    for i in list_of_operations:
-        print(i, end=" | ")
-    print("")
+# Function to show the text of pressed button inside the widget.
+def on_click(item):
+    current_exp = entry.get()
+    entry.delete(0, tk.END)
+    entry.insert(tk.END, current_exp + str(item))
 
-def graphical_headline(headline):                       # Creating function for graphical headline.
-    for i in range(0,len(headline)+4):
-        print("-",end="")
-    print(f"\n| {headline} |")
-    for i in range(0,len(headline)+4):
-        print("-",end="")
-    print("")
+# Function to evaluate the input inside of the widget.
+def calculate():
+    try:
+        result = eval(entry.get())
+        entry.delete(0, tk.END)
+        entry.insert(tk.END, str(result))
+    except Exception as e:
+        entry.delete(0, tk.END)
+        entry.insert(tk.END, "Chyba v zadání.")
 
-def math_operation_choosing():                          # Creating function for choosing the math operation.
-    while True:
-        operation = input("Zadejte, prosím, jakou matematickou operaci chcete použít: ")
-        
-        if operation == list_of_operations[0]:        # Operation 0.
-            a, b = two_number_input()
-            print(f"{a} + {b} = {add(a, b)}")
-            break
-        elif operation == list_of_operations[1]:        # Operation 1.
-            a, b = two_number_input()
-            print(f"{a} - {b} = {subtract(a, b)}")
-            break
-        elif operation == list_of_operations[2]:        # Operation 2.
-            a, b = two_number_input()
-            print(f"{a} x {b} = {multiply(a, b)}")
-            break
-        elif operation == list_of_operations[3]:        # Operation 3.
-            a, b = two_number_input()
-            while b == 0:                               # Taking care of no 0 dividion.
-                print("Chyba: Nelze dělit 0.")
-                a, b = two_number_input()
-            print(f"{a} / {b} = {divide(a, b)}")
-            break
-        elif operation == list_of_operations[4]:        # Operation 4.
-            a = one_number_input()
-            print(f"{a} na druhou = {exponentiate(a)}")
-            break
-        elif operation == list_of_operations[5]:        # Operation 5.
-            a = one_number_input()
-            print(f"Odmocnina z {a} = {extract_the_root(a)}")
-            break
+# C button function to clear the widget.
+def clear_entry():
+    entry.delete(0, tk.END)
 
-def one_number_input():                                 # Creating function for one input.
-    while True:
-        try:
-            a = float(input("Zadejte, prosím, číslo: "))
-        except ValueError:
-            print("Chyba: Zadejte, prosím, číslo správně.")
-        break
-    return(a)
+# Create the main window.
+win = tk.Tk()
+win.title("Kalkulačka")
 
-def two_number_input():                                 # Creating function for two inputs.
-    while True:
-        try:
-            a = float(input("Zadejte, prosím, první číslo: "))
-        except ValueError:
-            print("Chyba: Zadejte, prosím, první číslo správně.")
-        else:
-            try:
-                b = float(input("Zadejte, prosím, druhé číslo: "))
-            except ValueError:
-                print("Chyba: Zadejte, prosím, druhé číslo správně.")
-            break
-    return(a, b)
+# Create an entry widget for the calculator display.
+entry = tk.Entry(win, width=30, borderwidth=5, font=("Arial", 14))
+entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 
-def add(a, b):                                          # Creating function for adding.
-    return a + b
+# Define the calculator buttons and their grid positions (label, row, column).
+buttons = [
+    ("7", 1, 0), ("8", 1, 1), ("9", 1, 2), ("/", 1, 3),
+    ("4", 2, 0), ("5", 2, 1), ("6", 2, 2), ("*", 2, 3),
+    ("1", 3, 0), ("2", 3, 1), ("3", 3, 2), ("-", 3, 3),
+    ("0", 4, 0), (".", 4, 1), ("=", 5, 2), ("+", 4, 3),
+]
 
-def subtract(a, b):                                     # Creating function for subtracting.
-    return a - b
+# Create and place the buttons in the grid.
+for (text, row, col) in buttons:
+    if text == "=":                                                 # Defining "=" button.
+        btn = tk.Button(win, text=text, padx=40, pady=20, font=("Arial", 16), fg="green", command=calculate)
+    else:                                                           # Other buttons append their text to the display.
+        btn = tk.Button(win, text=text, padx=40, pady=20, font=("Arial", 14),
+                        command=lambda txt=text: on_click(txt))
+    btn.grid(row=row, column=col)
 
-def multiply(a, b):                                     # Creating function for multiplying.
-    return a * b
+# Create a C button to reset the display.
+clear_button = tk.Button(win, text="   C   ", padx=79, pady=20, font=("Arial", 14), fg="red", command=clear_entry)
+clear_button.grid(row=5, column=0, columnspan=2)
 
-def divide(a, b):                                       # Creating function for dividing.
-    return a / b
-
-def exponentiate(a):                                    # Creating function for exponentiation.
-    return math.pow(a, 2)
-
-def extract_the_root(a):                                # Creating function for extracting the root.
-    return math.sqrt(a)
-
-graphical_headline("Kalkulačka")
-print("Zadáním jedné z možností aktivujete matematickou operaci, nebo program ukončíte:")
-print_the_list()
-math_operation_choosing()
-print("")
-
-# Setting the window and button appearance.
-win = Tk()
-win.title("Rock, Paper, Scissors")
-win.geometry("700x600")
-
-headline = Label(win, text = "Ahoj kámo!\nChceš si zahrát Kámen, Nůžky, Papír?\n", font = ("Arial Bold", 14))
-headline.grid(column = 0, row = 0)
-
-button1 = Button(win, text = "Hrát!", font = ("Arial Bold", 16), bg = "green", fg = "blue", command = f_button1)
-button1.grid(column = 0, row = 1)
-
-label1 = Label(win, font = ("Arial Bold", 14))
-label1.grid(column = 0, row = 2)
-
-label2 = Label(win, font = ("Arial Bold", 14))
-label2.grid(column = 0, row = 3)
-
-win.mainloop()
+win.mainloop()                                                     # Starting the main loop.
