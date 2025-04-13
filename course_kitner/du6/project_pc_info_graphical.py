@@ -2,7 +2,7 @@
 
 import tkinter as tk
 import platform
-import psutil
+import psutil # type: ignore
 
 # Function to get PC info.
 def get_system_info():
