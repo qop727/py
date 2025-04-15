@@ -142,9 +142,11 @@ while True:
             time.sleep(1)
             head.goto(0, 0)
             head.direction = "stop"
+            
             for segment in segments:
                 segment.goto(1000, 1000)
             segments.clear()
+            
             score = 0
             score_pen.clear()
             score_pen.write("Score: {}    Record: {}".format(score, highest_score), align="center", font=("Courier", 12, "normal"))
