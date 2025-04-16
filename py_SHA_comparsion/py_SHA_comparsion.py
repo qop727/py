@@ -5,19 +5,19 @@ import hashlib
 def calculate_sha256(file_path):
     sha256_hash = hashlib.sha256()                  # Calculate the SHA-256 checksum of a file.
     try:
-        with open(file_path, "rb") as file:
-            for byte_block in iter(lambda: file.read(4096), b""):
-                sha256_hash.update(byte_block)
-        return sha256_hash.hexdigest()
+        with open(file_path, "rb") as file:         # Opens the file in binary("rb") mode.
+            for byte_block in iter(lambda: file.read(4096), b""):   # Reading file in 4096 byte blocks.
+                sha256_hash.update(byte_block)      # This updates data to calculate for every block.
+        return sha256_hash.hexdigest()              # Returning the hash code.
     except FileNotFoundError:
         print(f"\nChyba: Soubor nenalezen - {file_path}")
         return None
 
 def compare_checksum(file_path, provided_checksum):
-    file_checksum = calculate_sha256(file_path)     # Compare the SHA-256 checksum of a file with a provided checksum.
+    file_checksum = calculate_sha256(file_path)     
     if file_checksum is None:
         return False
-    return file_checksum == provided_checksum
+    return file_checksum == provided_checksum       # Compare the SHA-256 checksum of a file with a provided checksum.
 
 # Input file path and the SHA-256 hash to compare
 file_path = input("Zadejte, prosím, kompletní cestu k souboru: ")

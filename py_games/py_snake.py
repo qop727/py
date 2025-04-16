@@ -7,23 +7,23 @@ import random
 game_speed = 0.05
 score = 0
 highest_score = 0
-segments = []                   # Snake body segments list.
+segments = []                       # Snake body segments list.
 
 # Set up the screen.
 win = turtle.Screen()
-win.title("Snake")
+win.title("Lets Play Snake!")
 win.bgcolor("black")
 win.setup(width=620, height=620)
-win.tracer(0)                    # Turns off automatic screen updates.
+win.tracer(0)                       # Turns off automatic screen updates.
 
 # Snake head.
 head = turtle.Turtle()
-head.speed(0)
+head.speed(0)                       # Speed of writing 0 = no delay, 1 = slow, 10 = fast.
 head.shape("square")
 head.color("white")
-head.penup()
+head.penup()                        # Lifts the pen.
 head.goto(0, 0)
-head.direction = "stop"
+head.direction = "stop"             # Stops the movement of head until button is pressed.
 
 # Snake food.
 food = turtle.Turtle()
@@ -39,7 +39,7 @@ score_pen.speed(0)
 score_pen.shape("square")
 score_pen.color("white")
 score_pen.penup()
-score_pen.hideturtle()
+score_pen.hideturtle()              # Hides the drawing cursor
 score_pen.goto(0, 250)
 score_pen.write("Score: 0    Record: 0", align="center", font=("Courier", 12, "normal"))
 
@@ -94,7 +94,7 @@ while True:
         
         # Hide the segments.
         for segment in segments:
-            segment.goto(1000, 1000)
+            segment.goto(1000, 1000)    # Trash for the segments.
         segments.clear()
         
         score = 0
@@ -103,10 +103,9 @@ while True:
     
     # Check for collision with the food.
     if head.distance(food) < 20:
-        # Move the food to a random position
         x = random.randint(-290, 290)
         y = random.randint(-290, 290)
-        food.goto(x, y)
+        food.goto(x, y)                 # Move the food to a random position
         
         # Add a new segment to the snake body.
         new_segment = turtle.Turtle()
@@ -116,6 +115,7 @@ while True:
         new_segment.penup()
         segments.append(new_segment)
         
+        # Score increse.
         score += 10
         if score > highest_score:
             highest_score = score
@@ -123,7 +123,7 @@ while True:
         score_pen.write("Score: {}    Record: {}".format(score, highest_score), align="center", font=("Courier", 12, "normal"))
     
     # Move the end segments first in reverse order.
-    for index in range(len(segments) - 1, 0, -1):
+    for index in range(len(segments) - 1, 0, -1):   # (start, end+1, step)
         x = segments[index - 1].xcor()
         y = segments[index - 1].ycor()
         segments[index].goto(x, y)

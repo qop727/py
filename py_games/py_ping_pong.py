@@ -9,18 +9,18 @@ score_b = 0
 
 # Screen setting.
 win = turtle.Screen()
-win.title("PingPong")
+win.title("Lets play PingPong!")
 win.bgcolor("gray")
 win.setup(width=1000, height=800)
-win.tracer(0)                        # Turns off automatic screen updates
+win.tracer(0)                       # Turns off automatic screen updates
 
 # Top guardrail.
 t_guardrail = turtle.Turtle()
-t_guardrail.speed(0)
+t_guardrail.speed(0)                # Speed of writing 0 = no delay, 1 = slow, 10 = fast.
 t_guardrail.shape("square")
 t_guardrail.color("green")
-t_guardrail.shapesize(stretch_wid=1,stretch_len=50)
-t_guardrail.penup()
+t_guardrail.shapesize(stretch_wid=1,stretch_len=50)     # Setting the shape.
+t_guardrail.penup()                 # Lifts the pen.
 t_guardrail.goto(0, 310)
 
 # Bot guardrail.
@@ -66,7 +66,7 @@ score_pen_a.speed(0)
 score_pen_a.shape("square")
 score_pen_a.color("blue")
 score_pen_a.penup()
-score_pen_a.hideturtle()
+score_pen_a.hideturtle()                # Hides the drawing cursor
 score_pen_a.goto(-250, 320)
 score_pen_a.write(" Player A: 0", align="center", font=("Courier", 24, "normal"))
 
@@ -83,23 +83,19 @@ score_pen_b.write("Player B: 0 ", align="center", font=("Courier", 24, "normal")
 # Functions for paddle movement.
 def paddle_a_up():
     y = paddle_a.ycor()
-    y += 30
-    paddle_a.sety(y)
+    paddle_a.sety(y + 30)
 
 def paddle_a_down():
     y = paddle_a.ycor()
-    y -= 30
-    paddle_a.sety(y)
+    paddle_a.sety(y - 30)
 
 def paddle_b_up():
     y = paddle_b.ycor()
-    y += 30
-    paddle_b.sety(y)
+    paddle_b.sety(y + 30)
 
 def paddle_b_down():
     y = paddle_b.ycor()
-    y -= 30
-    paddle_b.sety(y)
+    paddle_b.sety(y - 30)
 
 # Keyboard bindings.
 win.listen()
@@ -119,10 +115,10 @@ while True:
     # Top and bottom border checking.
     if ball.ycor() > 290:
         ball.sety(290)
-        ball.dy *= -1
+        ball.dy *= -1                   # Makes the ball to bounce.
     elif ball.ycor() < -290:
         ball.sety(-290)
-        ball.dy *= -1
+        ball.dy *= -1                   # Makes the ball to bounce.
 
     # Left and right border checking.
     if ball.xcor() > 350:
@@ -130,18 +126,20 @@ while True:
         score_pen_a.clear()
         score_pen_a.write("Player B: {}".format(score_a), align="center", font=("Courier", 24, "normal"))
         ball.goto(0, 0)
-        ball.dx *= -1
+        time.sleep(1)
+        ball.dx *= -1                   # Gives the ball starting direction.
     elif ball.xcor() < -350:
         score_b += 1
         score_pen_b.clear()
         score_pen_b.write("Player A: {}".format(score_b), align="center", font=("Courier", 24, "normal"))
         ball.goto(0, 0)
-        ball.dx *= -1
+        time.sleep(1)
+        ball.dx *= -1                   # Gives the ball starting direction.
 
-    # Paddle and ball collisions.
+    # Paddle and ball collisions. + 50 means upper part, - 50 meand lower part of paddle.
     if ball.xcor() < -340 and ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() - 50:
-        ball.dx *= -1 
+        ball.dx *= -1                   # Makes the ball to bounce.
     elif ball.xcor() > 340 and ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() - 50:
-        ball.dx *= -1
+        ball.dx *= -1                   # Makes the ball to bounce.
     
     time.sleep(game_speed)
